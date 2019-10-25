@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Animals</title>
+</head>
+<script>
+    function submintClick(id) {
+        let newAnimal = {
+        name: document.getElementById('name').value,
+        type: document.getElementById('type').value
+        };
+        let url = '/animals/' + id;
+
+        console.log(newAnimal);
+        console.log('url = ' + url);
+
+        let response = fetch(url, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(newAnimal)
+        });
+
+        location = "../";
+
+        //let result = await response.json();
+        //alert(result.message); 
+    }
+    function closeMsg() {
+     document.getElementById('msg').style.display = 'none';
+    }
+   </script>
+<body>
+    <h1 id="animalId"><%= animal.id%></h1>
+    <hr>
+    <div class = 'animal'>
+        <b>Имя животного:</b><br>
+        <input id="name" type="text" size=40 value=<%= animal.name %>></input>
+        <br><br><b>Вид животного:</b><br>
+        <input id="type" type="text" size=40 value=<%= animal.type %>></input>
+    </div>
+    <p>Нажмите на <a href="#" onclick="submintClick(document.getElementById('animalId').innerText)">  
+    ссылку для внесения изменений</a></p>
+</body>
+</html>
