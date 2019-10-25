@@ -21,11 +21,6 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-/* app.set('views', __dirname + '/views');
-app.engine('html', engine.mustache);
-app.set('view engine', 'html');
- */    
-
 app.use((req, res, next) => {
     res.header('Access-Control-Allows-Origin', '*');
     next();
@@ -35,7 +30,7 @@ app.use('/animals', animalRoutes);
 
 app.use('/', mainRoutes);
 
-/* app.use((req, res, next) => {
+app.use((req, res, next) => {
     const error = new Error('Not found');
     error.status = 404;
     next(error);
@@ -49,6 +44,6 @@ app.use('/', mainRoutes);
             status: error.status,
         }
     })
-}); */
+}); 
 
 module.exports = app;
